@@ -1,0 +1,106 @@
+<html>
+<head>
+  <title>Length Converter</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    .converter {
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      padding: 10px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff6f00;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff9000;
+    }
+
+    #result {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Length Converter</h1>
+    <div class="converter">
+      <input type="number" id="inputValue" placeholder="Enter value">
+      <select id="fromUnit">
+        <option value="cm">Centimeters (cm)</option>
+        <option value="m">Meters (m)</option>
+        <option value="km">Kilometers (km)</option>
+      </select>
+      <select id="toUnit">
+        <option value="cm">Centimeters (cm)</option>
+        <option value="m">Meters (m)</option>
+        <option value="km">Kilometers (km)</option>
+      </select>
+      <button onclick="convert()">Convert</button>
+    </div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      // Get input value and units
+      var inputValue = parseFloat(document.getElementById("inputValue").value);
+      var fromUnit = document.getElementById("fromUnit").value;
+      var toUnit = document.getElementById("toUnit").value;
+
+      // Conversion factors
+      var cmToM = 0.01;
+      var cmToKm = 0.00001;
+      var mToCm = 100;
+      var mToKm = 0.001;
+      var kmToCm = 100000;
+      var kmToM = 1000;
+
+      // Perform conversion
+      var result;
+      if (fromUnit === "cm" && toUnit === "m") {
+        result = inputValue * cmToM;
+      } else if (fromUnit === "cm" && toUnit === "km") {
+        result = inputValue * cmToKm;
+      } else if (fromUnit === "m" && toUnit === "cm") {
+        result = inputValue * mToCm;
+      } else if (fromUnit === "m" && toUnit === "km") {
+        result = inputValue * mToKm;
+      } else if (fromUnit === "km" && toUnit === "cm") {
+        result = inputValue * kmToCm;
+      } else if (fromUnit === "km" && toUnit === "m") {
+        result = inputValue * kmToM;
+      } else {
+        result = inputValue; // Units are the same
+      }
+
+      // Display result
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</
